@@ -19,7 +19,7 @@ You can install Snapshell globally to use it from anywhere in your terminal:
 npm install -g snapshell
 ```
 
-### local Installation (Recommended)
+### local Installation
 ```
 npm install snapshell
 npx snapshell
