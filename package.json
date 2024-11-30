@@ -1,6 +1,6 @@
 {
   "name": "snapshell",
-  "version": "1.1.1",
+  "version": "1.0.1",
   "description": "makes shortcuts for commands",
   "main": "index.js",
   "type": "module",
