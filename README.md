@@ -11,19 +11,12 @@
 
 ## Installation
 
-### Global Installation (Recommended)
-
 You can install Snapshell globally to use it from anywhere in your terminal:
 
 ```
 npm install -g snapshell
 ```
 
-### local Installation
-```
-npm install snapshell
-npx snapshell
-```
 ### How to use
 
 ## Adding a Shortcut
