@@ -170,13 +170,19 @@ program
         const localShortcuts = db.data.localShortcuts || {};
 
         let commands = null;
+        let localShortcutExists = false;
 
-        const currentDir = process.cwd(); // Get the current working directory
-        if (localShortcuts[currentDir] && localShortcuts[currentDir][shortcut]) {
-            // If a local shortcut exists for the current directory, use it
-            commands = localShortcuts[currentDir][shortcut];
-            console.log(chalk.green(`Running local shortcut: "${currentDir}": ${shortcut} -> ${commands.join(' && ')}`));
-        } else if (globalShortcuts[shortcut]) {
+        let currentDir = process.cwd(); // Get the current working directory
+        while(currentDir !== path.dirname(currentDir)){
+            if(localShortcuts[currentDir] && localShortcuts[currentDir][shortcut]){
+                commands = localShortcuts[currentDir][shortcut];
+                console.log(chalk.green(`Running local shortcut: "${currentDir}": ${shortcut} -> ${commands.join(' && ')}`));
+                localShortcutExists = true;
+                break;
+            }
+            currentDir = path.dirname(currentDir);
+        }
+        if (globalShortcuts[shortcut] && !localShortcutExists) {
             // If no local shortcut found, check for a global shortcut
             commands = globalShortcuts[shortcut];
             console.log(chalk.green(`Running global shortcut: ${shortcut} -> ${commands.join(' && ')}`));
@@ -225,7 +231,7 @@ program
             }
         ]);
 
-        const {shortcutType, shortcut, confirm } = answers;
+        const { shortcutType, shortcut, confirm } = answers;
 
         if (!confirm) {
             console.log(chalk.yellow('shortcut removal canceled'));
@@ -241,7 +247,7 @@ program
                     // Found the shortcut in the directory
                     found = true;
                     delete db.data.localShortcuts[dir][shortcut];
-                    
+
                     // If there are no more local shortcuts in the directory, delete the directory entry
                     if (Object.keys(db.data.localShortcuts[dir]).length === 0) {
                         delete db.data.localShortcuts[dir];

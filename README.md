@@ -17,9 +17,9 @@ You can install Snapshell globally to use it from anywhere in your terminal:
 npm install -g snapshell
 ```
 
-### How to use
+## How to use
 
-## Adding a Shortcut
+### Adding a Shortcut
 
 ```
 ss add
@@ -32,7 +32,7 @@ Enter command #1: npm install
 Enter command #2: npm run build
 ```
 
-## Listing Shortcuts
+### Listing Shortcuts
 
 ```
 ss list
@@ -44,9 +44,11 @@ Local Shortcuts:
   /path/to/project -> test -> npm run test
 ```
 
-## Running a Shortcut
+### Running a Shortcut
 
-==If a local and global shortcut have the same name then local is prioritized==
+>#### If a local and global shortcut have the same name then local is prioritized
+>
+>#### A child directory inherites the shortcuts of its parent directories 
 
 
 ```
@@ -55,7 +57,7 @@ ss [shortcut-name]
 ss build
 ```
 
-## Removing a Shortcut
+### Removing a Shortcut
 
 ```
 ss remove
